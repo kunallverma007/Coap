@@ -346,7 +346,7 @@ class Message(object):
                 self.response_type = None
             else:
                 raise error.NotImplemented()
-        else:
+        else: 
             raise ValueError("Fatal Error: called appendRequestBlock on non-request message!!!")
 
     def appendResponseBlock(self, next_block):
@@ -885,7 +885,10 @@ class Coap(protocol.DatagramProtocol):
             else:
                 return
         log.msg("Received Response, token: %s, host: %s, port: %s" % (codecs.encode(response.token, 'hex'), response.remote[0], response.remote[1]))
+        print(self.outgoing_requests)
+        print((response.token,response.remote))
         if (response.token, response.remote) in self.outgoing_requests:
+            # print(889)
             self.outgoing_requests.pop((response.token, response.remote)).handleResponse(response)
             ackIfConfirmable()
 
@@ -917,11 +920,13 @@ class Coap(protocol.DatagramProtocol):
                     d = requester.deferred
                     d.addCallback( callback, *args, **kw)
             else:
+                print("920")
                 resetUnrecognized()
 
             if response.opt.observe is None:
                 del self.observations[(response.token, response.remote)]
         else:
+            print("926")
             resetUnrecognized()
 
 

@@ -61,7 +61,7 @@ class BlockResource (resource.CoAPResource):
 
     def render_PUT(self, request):
         log.msg('PUT payload: %s', request.payload)
-        payload = "Mr. and Mrs. Dursley of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much."
+        payload = b"Mr. and Mrs. Dursley of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much."
         response = coap.Message(code=coap.CHANGED, payload=payload)
         return defer.succeed(response)
 
@@ -164,7 +164,7 @@ other = resource.CoAPResource()
 root.putChild('other', other)
 
 block = BlockResource()
-other.putChild('block', block)
+root.putChild('large-update', block)
 
 separate = SeparateLargeResource()
 other.putChild('separate', separate)

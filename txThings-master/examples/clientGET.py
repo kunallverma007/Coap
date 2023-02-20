@@ -41,20 +41,17 @@ class Agent:
 
     def requestResource(self):
         request = coap.Message(code=coap.GET)
-        # Send request to "coap://coap.me:5683/test"
-
-        # print("HI ITS ME CALLED")
         request.opt.uri_path = (b'counter',)
         request.opt.observe = 0
-        request.remote = (ip_address("169.254.71.19"), coap.COAP_PORT)
+        # request.remote = (ip_address("169.254.71.19"), coap.COAP_PORT)
+        request.remote = (ip_address("127.0.0.1"), coap.COAP_PORT)
+
         d = protocol.request(request, observeCallback=self.printLaterResponse)
         d.addCallback(self.printResponse)
         d.addErrback(self.noResponse)
 
     def printResponse(self, response):
         print('First result: ' + str(response.payload, 'utf-8'))
-        # reactor.stop()
-
     def printLaterResponse(self, response):
         print('Observe result: ' + str(response.payload, 'utf-8'))
 
