@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="californium-legal" />
+        <module name="cf-secure" />
+        <module name="cf-unix-health" />
+        <module name="californium-proxy2" />
+        <module name="californium-assembly" />
+        <module name="cf-plugtest-checker" />
+        <module name="sc-dtls-example-client" />
+        <module name="cf-nat" />
+        <module name="cf-cli" />
+        <module name="cf-unix-setup" />
+        <module name="cf-benchmark-observe" />
+        <module name="cf-helloworld-server" />
+        <module name="cf-simplefile-server" />
+        <module name="californium-osgi" />
+        <module name="cf-extplugtest-server" />
+        <module name="cf-benchmark" />
+        <module name="cf-cocoa" />
+        <module name="cf-helloworld-client" />
+        <module name="cf-cli-tcp-netty" />
+        <module name="cf-cocoaA" />
+        <module name="element-connector" />
+        <module name="cf-plugtest-server" />
+        <module name="cf-pubsub" />
+        <module name="scandium" />
+        <module name="cf-cluster" />
+        <module name="californium-interoperability-tests" />
+        <module name="californium-integration-tests" />
+        <module name="cf-proxy2" />
+        <module name="californium-core" />
+        <module name="cf-extplugtest-client" />
+        <module name="element-connector-tcp-netty" />
+        <module name="demo-certs" />
+        <module name="cf-oscore" />
+        <module name="cf-plugtest-client" />
+        <module name="sc-dtls-example-server" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="californium-assembly" options="-Xlint:deprecation" />
+      <module name="californium-core" options="-Xlint:deprecation" />
+      <module name="californium-integration-tests" options="-Xlint:deprecation" />
+      <module name="californium-interoperability-tests" options="-Xlint:deprecation" />
+      <module name="californium-legal" options="-Xlint:deprecation" />
+      <module name="californium-osgi" options="-Xlint:deprecation" />
+      <module name="californium-proxy2" options="-Xlint:deprecation" />
+      <module name="cf-benchmark" options="-Xlint:deprecation" />
+      <module name="cf-benchmark-observe" options="-Xlint:deprecation" />
+      <module name="cf-cli" options="-Xlint:deprecation" />
+      <module name="cf-cli-tcp-netty" options="-Xlint:deprecation" />
+      <module name="cf-cluster" options="-Xlint:deprecation" />
+      <module name="cf-cocoa" options="-Xlint:deprecation" />
+      <module name="cf-cocoaA" options="-Xlint:deprecation" />
+      <module name="cf-extplugtest-client" options="-Xlint:deprecation" />
+      <module name="cf-extplugtest-server" options="-Xlint:deprecation" />
+      <module name="cf-helloworld-client" options="-Xlint:deprecation" />
+      <module name="cf-helloworld-server" options="-Xlint:deprecation" />
+      <module name="cf-nat" options="-Xlint:deprecation" />
+      <module name="cf-oscore" options="-Xlint:deprecation" />
+      <module name="cf-plugtest-checker" options="-Xlint:deprecation" />
+      <module name="cf-plugtest-client" options="-Xlint:deprecation" />
+      <module name="cf-plugtest-server" options="-Xlint:deprecation" />
+      <module name="cf-proxy2" options="-Xlint:deprecation" />
+      <module name="cf-pubsub" options="-Xlint:deprecation" />
+      <module name="cf-secure" options="-Xlint:deprecation" />
+      <module name="cf-simplefile-server" options="-Xlint:deprecation" />
+      <module name="cf-unix-health" options="-Xlint:deprecation" />
+      <module name="cf-unix-setup" options="-Xlint:deprecation" />
+      <module name="demo-certs" options="-Xlint:deprecation" />
+      <module name="element-connector" options="-Xlint:deprecation" />
+      <module name="element-connector-tcp-netty" options="-Xlint:deprecation" />
+      <module name="sc-dtls-example-client" options="-Xlint:deprecation" />
+      <module name="sc-dtls-example-server" options="-Xlint:deprecation" />
+      <module name="scandium" options="-Xlint:deprecation" />
+    </option>
+  </component>
+</project>
