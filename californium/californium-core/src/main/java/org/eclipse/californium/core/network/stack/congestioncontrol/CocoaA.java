@@ -112,7 +112,7 @@ public class CocoaA extends CongestionControlLayer {
             newRto = Math.round(weighting * newRto + (1 - weighting) * getRTO());
 
             if (newRto>=1.5*getCurrentRTO()){
-
+//            if (newRto>=getCurrentRTO()){
 
                 int currNSTART = getNSTART();
                 if (currNSTART!=1) {
@@ -122,11 +122,11 @@ public class CocoaA extends CongestionControlLayer {
             if (newRto<getCurrentRTO()){
 
                 int currNSTART = getNSTART();
-                if (currNSTART<8){
+                if (currNSTART<16){
                     updateNSTART(currNSTART+1);
                 }
             }
-            System.out.println(getNSTART());
+//            System.out.println(getNSTART());
             updateRTO(newRto);
             this.nanoTimestamp = ClockUtil.nanoRealtime();
         }

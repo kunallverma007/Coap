@@ -45,7 +45,7 @@ public class CocoaaClient {
             if (args.length > 0) {
                 uri = new URI(args[0]);
             } else {
-                uri = new URI("coap://127.0.0.1:5683");
+                uri = new URI("coap://192.168.137.10:5683");
 //				uri = new URI("coap://californium.eclipseprojects.io/test");
 
             }
@@ -59,7 +59,7 @@ public class CocoaaClient {
                 // org.eclipse.californium.core.network.stack.congestioncontrol
                 .set(CoapConfig.CONGESTION_CONTROL_ALGORITHM, CongestionControlMode.COCOA_A)
                 // set NSTART to four
-                .set(CoapConfig.NSTART, 8);
+                .set(CoapConfig.NSTART, 16);
 
         // create an endpoint with this configuration
         CoapEndpoint.Builder builder = new CoapEndpoint.Builder();
@@ -73,6 +73,7 @@ public class CocoaaClient {
 
         final int NUMBER = 50;
         final Semaphore semaphore = new Semaphore(0);
+        long st = System.nanoTime();
 
         for (int i = 0; i < NUMBER; ++i) {
             client.get(new CoapHandler() {
@@ -95,6 +96,8 @@ public class CocoaaClient {
             semaphore.acquire(NUMBER);
         } catch (InterruptedException e) {
         }
+        long en =System.nanoTime();
+        LOGGER.info("Throughput {}",(en-st)/50);
         client.shutdown();
     }
 }

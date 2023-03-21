@@ -45,7 +45,7 @@ public class CocoaClient {
 			if (args.length > 0) {
 				uri = new URI(args[0]);
 			} else {
-				uri = new URI("coap://127.0.0.1:5683");
+				uri = new URI("coap://192.168.137.10:5683");
 //				uri = new URI("coap://californium.eclipseprojects.io/test");
 
 			}
@@ -73,7 +73,7 @@ public class CocoaClient {
 
 		final int NUMBER = 50;
 		final Semaphore semaphore = new Semaphore(0);
-
+		long st = System.nanoTime();
 		for (int i = 0; i < NUMBER; ++i) {
 			client.get(new CoapHandler() {
 
@@ -95,6 +95,8 @@ public class CocoaClient {
 			semaphore.acquire(NUMBER);
 		} catch (InterruptedException e) {
 		}
+		long en =System.nanoTime();
+		LOGGER.info("Throughput {}",(en-st)/50);
 		client.shutdown();
 	}
 }
