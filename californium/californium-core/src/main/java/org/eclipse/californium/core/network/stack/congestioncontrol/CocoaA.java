@@ -111,12 +111,12 @@ public class CocoaA extends CongestionControlLayer {
             }
             newRto = Math.round(weighting * newRto + (1 - weighting) * getRTO());
 
-            if (newRto>=1.5*getCurrentRTO()){
+            if (newRto>=getCurrentRTO()){
 //            if (newRto>=getCurrentRTO()){
 
                 int currNSTART = getNSTART();
-                if (currNSTART!=1) {
-                    updateNSTART(currNSTART-1);
+                if (currNSTART>6) {
+                    updateNSTART(currNSTART-2);
                 }
             }
             if (newRto<getCurrentRTO()){

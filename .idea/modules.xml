@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/californium/demo-apps/cf-cocoaA/cf-cocoaA.iml" filepath="$PROJECT_DIR$/californium/demo-apps/cf-cocoaA/cf-cocoaA.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java-coap.iml" filepath="$PROJECT_DIR$/.idea/java-coap.iml" />
     </modules>
   </component>

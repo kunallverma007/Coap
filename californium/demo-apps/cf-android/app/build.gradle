@@ -14,7 +14,7 @@ android {
         cali {
 
             // requires a "gradle.properties" file with the
-            // RELEASE_??? properties below in the ".gradle" folder.         
+            // RELEASE_??? properties below in the ".gradle" folder.
 
             storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD

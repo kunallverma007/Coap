@@ -19,6 +19,9 @@ package org.eclipse.californium.examples;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.Semaphore;
+import java.io.FileWriter;   // Import the FileWriter class
+
+import java.io.IOException;  // Import the IOException class to handle errors
 
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapHandler;
@@ -34,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public class CocoaaClient {
 
     /** The logger. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(CocoaClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CocoaaClient.class);
 
     public static void main(String[] args) {
         CoapConfig.register();
@@ -81,12 +84,13 @@ public class CocoaaClient {
                 @Override
                 public void onLoad(CoapResponse response) {
                     semaphore.release();
-                    LOGGER.info("Received {}", semaphore.availablePermits());
+//                    LOGGER.info("Received {}", semaphore.availablePermits());
                 }
 
                 @Override
                 public void onError() {
                     LOGGER.warn("Request failed!");
+
                 }
             });
         }
@@ -97,6 +101,15 @@ public class CocoaaClient {
         } catch (InterruptedException e) {
         }
         long en =System.nanoTime();
+        try {
+            FileWriter myWriter = new FileWriter("test_temp_cocoaA.txt");
+            myWriter.write(String.valueOf((en - st) / 50));
+            myWriter.close();
+        }catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
         LOGGER.info("Throughput {}",(en-st)/50);
         client.shutdown();
     }
