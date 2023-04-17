@@ -135,7 +135,8 @@ public final class CoapConfig {
 		 * RTO peak hopper.
 		 */
 		PEAKHOPPER_RTO,
-		COCOA_A
+		COCOA_A,
+		COCOA_DM
 	}
 
 	/**

@@ -700,6 +700,12 @@ public abstract class CongestionControlLayer extends ReliabilityLayer {
 		case COCOA_A:
 			layer = new CocoaA(tag,config,false);
 			break;
+
+		case COCOA_DM:
+
+
+			layer = new CocoaDM(tag,config,false);
+			break
 		case NULL:
 			layer = new ReliabilityLayer(config);
 			break;

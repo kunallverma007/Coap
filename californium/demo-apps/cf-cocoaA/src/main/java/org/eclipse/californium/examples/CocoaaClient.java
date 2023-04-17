@@ -62,7 +62,7 @@ public class CocoaaClient {
                 // org.eclipse.californium.core.network.stack.congestioncontrol
                 .set(CoapConfig.CONGESTION_CONTROL_ALGORITHM, CongestionControlMode.COCOA_A)
                 // set NSTART to four
-                .set(CoapConfig.NSTART, 16);
+                .set(CoapConfig.NSTART, 4);
 
         // create an endpoint with this configuration
         CoapEndpoint.Builder builder = new CoapEndpoint.Builder();
@@ -76,7 +76,7 @@ public class CocoaaClient {
 
         final int NUMBER = 50;
         final Semaphore semaphore = new Semaphore(0);
-        long st = System.nanoTime();
+        long st = System.currentTimeMillis();
 
         for (int i = 0; i < NUMBER; ++i) {
             client.get(new CoapHandler() {
@@ -100,17 +100,18 @@ public class CocoaaClient {
             semaphore.acquire(NUMBER);
         } catch (InterruptedException e) {
         }
-        long en =System.nanoTime();
+        long en =System.currentTimeMillis();
         try {
-            FileWriter myWriter = new FileWriter("test_temp_cocoaA.txt");
+            FileWriter myWriter = new FileWriter("test_temp_cocoaA(temp).txt",true);
             myWriter.write(String.valueOf((en - st) / 50));
+            myWriter.write("\n");
             myWriter.close();
         }catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        LOGGER.info("Throughput {}",(en-st)/50);
+//        LOGGER.info("Throughput {}",(en-st)/50);
         client.shutdown();
     }
 }

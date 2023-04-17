@@ -17,6 +17,9 @@
 
 package org.eclipse.californium.core.network.stack.congestioncontrol;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.californium.core.network.stack.CongestionControlLayer;
@@ -24,7 +27,7 @@ import org.eclipse.californium.core.network.stack.RemoteEndpoint;
 import org.eclipse.californium.elements.config.Configuration;
 import org.eclipse.californium.elements.util.ClockUtil;
 
-public class CocoaA extends CongestionControlLayer {
+public class CocoaQueue extends CongestionControlLayer {
 
     private final static int KSTRONG = 4;
     private final static int KWEAK = 1;
@@ -43,9 +46,9 @@ public class CocoaA extends CongestionControlLayer {
     // private final static long UPPERAGELIMIT = 30000; // determines after how
     // long (ms) an estimator undergoes the aging process
 
-
-
-    public CocoaA(String tag, Configuration config,boolean strong) {
+//    private static float last = -1;
+    private static Queue<Long> RTTq = new LinkedList<>();
+    public CocoaQueue(String tag, Configuration config,boolean strong) {
         super(tag, config);
         this.strong=strong;
         setDithering(true);
@@ -111,22 +114,58 @@ public class CocoaA extends CongestionControlLayer {
             }
             newRto = Math.round(weighting * newRto + (1 - weighting) * getRTO());
 
-            if (newRto>=getCurrentRTO()){
 //            if (newRto>=getCurrentRTO()){
+//
+//                int currNSTART = getNSTART();
+//                if (currNSTART>4) {
+//                    updateNSTART(currNSTART-1);
+//                }
+//            }
+//            if (newRto<getCurrentRTO()){
+//
+//                int currNSTART = getNSTART();
+//                if (currNSTART<8){
+//                    updateNSTART(currNSTART+1);
+//                }
+//            }
+//            if (last != -1){
+//                if (measuredRTT<last){
+//                    int currNSTART =getNSTART();
+//                    if (currNSTART>4) {
+//                        updateNSTART(currNSTART-2);
+//                    }
+//                }
+//                else{
+//                    int currNSTART = getNSTART();
+//                    if (currNSTART<16){
+//                        updateNSTART(currNSTART+1);
+//                    }
+//                }
+//            }
+//            last=measuredRTT;
+            if (RTTq.size()==2){
+                Iterator<Long> it = RTTq.iterator();
+                float mRTT = 0;
+                while (it.hasNext()){
 
-                int currNSTART = getNSTART();
-                if (currNSTART>6) {
-                    updateNSTART(currNSTART-2);
-                }
-            }
-            if (newRto<getCurrentRTO()){
+                    mRTT = Math.max(mRTT,it.next());
 
-                int currNSTART = getNSTART();
-                if (currNSTART<16){
-                    updateNSTART(currNSTART+1);
                 }
+                if (measuredRTT<mRTT){
+                    int currNSTART =getNSTART();
+                    if (currNSTART>4) {
+                        updateNSTART(currNSTART-1);
+                    }
+                }
+                else{
+                    int currNSTART = getNSTART();
+                    if (currNSTART<16){
+                        updateNSTART(currNSTART+1);
+                    }
+                }
+                RTTq.remove();
             }
-//            System.out.println(getNSTART());
+            RTTq.add(measuredRTT);
             updateRTO(newRto);
             this.nanoTimestamp = ClockUtil.nanoRealtime();
         }

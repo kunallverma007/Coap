@@ -33,10 +33,10 @@ import org.eclipse.californium.elements.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CocoaClient {
+public class CocoaClientDM {
 
 	/** The logger. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(CocoaClient.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CocoaClientDM.class);
 
 	public static void main(String[] args) {
 		CoapConfig.register();
@@ -99,7 +99,7 @@ public class CocoaClient {
 		}
 		long en =System.currentTimeMillis();
 		try {
-			FileWriter myWriter = new FileWriter("test_temp_cocoa.txt",true);
+			FileWriter myWriter = new FileWriter("test_temp_cocoa(DM).txt",true);
 			myWriter.write(String.valueOf((en - st) / 50));
 			myWriter.write("\n");
 			myWriter.close();
