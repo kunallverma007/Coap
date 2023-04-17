@@ -46,7 +46,7 @@ public class CocoaQueue extends CongestionControlLayer {
     // private final static long UPPERAGELIMIT = 30000; // determines after how
     // long (ms) an estimator undergoes the aging process
 
-//    private static float last = -1;
+   private final static float QLEN = -1;
     private static Queue<Long> RTTq = new LinkedList<>();
     public CocoaQueue(String tag, Configuration config,boolean strong) {
         super(tag, config);
@@ -143,7 +143,7 @@ public class CocoaQueue extends CongestionControlLayer {
 //                }
 //            }
 //            last=measuredRTT;
-            if (RTTq.size()==2){
+            if (RTTq.size()==QLEN){
                 Iterator<Long> it = RTTq.iterator();
                 float mRTT = 0;
                 while (it.hasNext()){
